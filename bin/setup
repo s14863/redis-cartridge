@@ -6,5 +6,9 @@ mkdir -p logs
 mkdir -p pid
 mkdir -p env
 
+mkdir -p $OPENSHIFT_DATA_DIR/.redis/dbs
+
+echo $(pwd)/versions/3.2/bin > env/OPENSHIFT_REDIS_PATH_ELEMENT
+
 date +%s | sha256sum | base64 | head -c 32 > env/PJA_REDIS_PASSWORD
 client_result "PJA Redis password is: $(cat env/PJA_REDIS_PASSWORD)"
