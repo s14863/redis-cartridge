@@ -1,0 +1,21 @@
+Name: pja-redis
+Cartridge-Short-Name: PJA_REDIS
+Cartridge-Version: '0.1'
+Cartridge-Vendor: s14863
+Display-Name: PJA Redis
+Version: '3.2'
+Categories:
+- service
+- database
+- embedded
+Provides:
+- redis-3.2
+- redis
+Scaling:
+  Min: 1
+  Max: 1
+Endpoints:
+  - Private-IP-Name: HOST
+    Private-Port-Name: PORT
+    Private-Port: 16379
+    Public-Port-Name: PROXY_PORT

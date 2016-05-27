@@ -1,0 +1,27 @@
+#!/bin/bash
+
+pid=pid/redis.pid
+redis_cli="-h $OPENSHIFT_PJA_REDIS_HOST -p $OPENSHIFT_PJA_REDIS_PORT -a $PJA_REDIS_PASSWORD"
+
+function start() {
+    erb conf/redis.conf.erb | redis-server -
+}
+
+function stop() {
+    redis-cli $redis_cli SHUTDOWN
+}
+
+function status() {
+    if [ -f $pid ] && ( kill -0 $(cat $pid) ); then
+        client_result "Redis is running"
+    else
+    	client_result "Redis is not running"
+    fi
+}
+
+case "$1" in
+    start)    start  ;;
+    stop)     stop   ;;
+    status)   status ;;
+    *)
+esac

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+mkdir -p logs
+mkdir -p pid
+mkdir -p env
+
+date +%s | sha256sum | base64 | head -c 32 > env/PJA_REDIS_PASSWORD
+client_result "PJA Redis password is: $(cat env/PJA_REDIS_PASSWORD)"
