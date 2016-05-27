@@ -4,9 +4,11 @@ pid=pid/redis.pid
 redis_cli="-h $OPENSHIFT_PJA_REDIS_HOST -p $OPENSHIFT_PJA_REDIS_PORT -a $PJA_REDIS_PASSWORD"
 
 function start() {
+    echo
 }
 
 function stop() {
+    echo
 }
 
 function status() {
