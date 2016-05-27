@@ -4,11 +4,12 @@ pid=pid/redis.pid
 redis_cli="-h $OPENSHIFT_PJA_REDIS_HOST -p $OPENSHIFT_PJA_REDIS_PORT -a $PJA_REDIS_PASSWORD"
 
 function start() {
-    echo
+    echo $redis_cli > env/REDIS_CLI
+    erb conf/redis.conf.erb | redis-server -
 }
 
 function stop() {
-    echo
+    redis-cli $redis_cli SHUTDOWN
 }
 
 function status() {
@@ -18,6 +19,8 @@ function status() {
     	client_result "Redis is not running"
     fi
 }
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 case "$1" in
     start)    start  ;;
