@@ -5,12 +5,11 @@ redis_cli="-h $OPENSHIFT_PJA_REDIS_HOST -p $OPENSHIFT_PJA_REDIS_PORT -a $PJA_RED
 
 function start() {
     echo $redis_cli > env/REDIS_CLI
-    # erb conf/redis.conf.erb | redis-server -
+    erb conf/redis.conf.erb | redis-server -
 }
 
 function stop() {
-    echo
-    # redis-cli $redis_cli SHUTDOWN
+    redis-cli $redis_cli SHUTDOWN
 }
 
 function status() {
